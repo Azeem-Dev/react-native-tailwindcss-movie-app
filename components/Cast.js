@@ -18,8 +18,8 @@ export default Cast = ({ cast, navigation }) => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         data={cast}
-        keyExtractor={(item) => {
-          item;
+        keyExtractor={(item,index) => {
+          return index;
         }}
         renderItem={({ item: person }) => {
           return (
