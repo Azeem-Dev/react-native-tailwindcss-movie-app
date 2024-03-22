@@ -17,7 +17,7 @@ import { useState } from "react";
 
 const ios = Platform.OS === ios;
 
-const HomeScreen = () => {
+export default HomeScreen = () => {
   const [trending, setTrending] = useState([1, 2, 3]);
   const [upcoming, setUpcoming] = useState([1, 2, 3]);
   const [topRated, setTopRated] = useState([1, 2, 3]);
@@ -50,4 +50,3 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;

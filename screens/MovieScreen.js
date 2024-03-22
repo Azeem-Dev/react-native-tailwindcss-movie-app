@@ -15,18 +15,19 @@ import { HeartIcon } from "react-native-heroicons/solid";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../theme/index";
 import MoviePoster from "../assets/images/moviePoster2.jpg";
-import { Cast } from "../components";
+import { Cast, MoviesList } from "../components";
 
 const { width, height } = Dimensions.get("window");
 const ios = Platform.OS === "ios";
 
-const MovieScreen = () => {
+export default MovieScreen = () => {
   const { params: item } = useRoute();
   const navigation = useNavigation();
 
   const [isFavourite, toggleFavourite] = useState(false);
   const [cast, setCast] = useState([1, 2, 3]);
-  
+  const [similarMovies, setSimilarMovies] = useState([1, 2, 3]);
+
   useEffect(() => {}, [item]);
   return (
     <ScrollView
@@ -99,9 +100,9 @@ const MovieScreen = () => {
         </Text>
       </View>
 
-      <Cast cast={cast} />
+      <Cast cast={cast} navigation={navigation} />
+
+      <MoviesList title="Similar Movie" data={similarMovies} hideSeeAllButton={true}/>
     </ScrollView>
   );
 };
-
-export default MovieScreen;

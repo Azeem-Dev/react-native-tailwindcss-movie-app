@@ -9,7 +9,7 @@ import React from "react";
 import MoviePosterImage from "../assets/images/moviePoster1.png";
 
 const { width, height } = Dimensions.get("window");
-const MovieCard = ({ item,handlePress }) => {
+export default MovieCard = ({ item,handlePress }) => {
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <Image
@@ -24,4 +24,3 @@ const MovieCard = ({ item,handlePress }) => {
   );
 };
 
-export default MovieCard;

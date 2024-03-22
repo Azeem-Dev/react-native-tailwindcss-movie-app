@@ -13,7 +13,7 @@ import MoviePosterImage from "../assets/images/moviePoster2.jpg";
 
 import { styles } from "../theme";
 
-const MoviesList = ({ title, data }) => {
+export default MoviesList = ({ title, data, hideSeeAllButton = false }) => {
   const { width, height } = Dimensions.get("window");
 
   const navigation = useNavigation();
@@ -23,11 +23,13 @@ const MoviesList = ({ title, data }) => {
       <View className="mx-4 flex-row justify-between items-center">
         <Text className="text-white text-xl">{title}</Text>
 
-        <TouchableOpacity>
-          <Text style={styles.text} className="text-lg">
-            See All
-          </Text>
-        </TouchableOpacity>
+        {!hideSeeAllButton && (
+          <TouchableOpacity>
+            <Text style={styles.text} className="text-lg">
+              See All
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <FlatList
@@ -37,7 +39,7 @@ const MoviesList = ({ title, data }) => {
         renderItem={({ item }) => {
           return (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate("Movie", item)}
+              onPress={() => navigation.push("Movie", item)}
             >
               <View className="space-y-1 mr-4">
                 <Image
@@ -56,4 +58,3 @@ const MoviesList = ({ title, data }) => {
   );
 };
 
-export default MoviesList;

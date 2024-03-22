@@ -7,11 +7,11 @@ import MovieCard from "./MovieCard";
 
 const { width, height } = Dimensions.get("window");
 
-const TrendingMovies = ({ movies }) => {
+export default TrendingMovies = ({ movies }) => {
   const navigation = useNavigation();
-  
+
   const hanldePress = (movie) => {
-    console.log(movie);
+    navigation.navigate("Movie", movie);
   };
 
   return (
@@ -36,5 +36,3 @@ const TrendingMovies = ({ movies }) => {
     </View>
   );
 };
-
-export default TrendingMovies;
