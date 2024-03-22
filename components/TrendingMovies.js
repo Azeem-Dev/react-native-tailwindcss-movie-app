@@ -13,7 +13,6 @@ export default TrendingMovies = ({ movies }) => {
   const hanldePress = (movie) => {
     navigation.navigate("Movie", movie);
   };
-
   return (
     <View className="mb-8">
       <Text className="text-white text-xl mx-4 mb-5">Trending</Text>

@@ -13,13 +13,14 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { XMarkIcon } from "react-native-heroicons/outline";
 import { useState } from "react";
+import { Loading } from "../components";
 
 const { width, height } = Dimensions.get("window");
 
 export default SearchScreen = () => {
   const navigation = useNavigation();
   const [results, setResults] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   return (
     <SafeAreaView className="bg-neutral-800 flex-1">
       <View className="mx-4 mb-3 flex-row justify-between items-center border border-neutral-500 rounded-full mt-4">
@@ -35,8 +36,9 @@ export default SearchScreen = () => {
           <XMarkIcon size="25" color="white" />
         </TouchableOpacity>
       </View>
-
-      {results.length > 0 ? (
+      {loading ? (
+        <Loading />
+      ) : results.length > 0 ? (
         <ScrollView
           className="space-y-3"
           showsVerticalScrollIndicator={false}

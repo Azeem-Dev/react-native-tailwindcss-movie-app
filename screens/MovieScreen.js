@@ -15,7 +15,7 @@ import { HeartIcon } from "react-native-heroicons/solid";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../theme/index";
 import MoviePoster from "../assets/images/moviePoster2.jpg";
-import { Cast, MoviesList } from "../components";
+import { Cast, Loading, MoviesList } from "../components";
 
 const { width, height } = Dimensions.get("window");
 const ios = Platform.OS === "ios";
@@ -27,6 +27,7 @@ export default MovieScreen = () => {
   const [isFavourite, toggleFavourite] = useState(false);
   const [cast, setCast] = useState([1, 2, 3]);
   const [similarMovies, setSimilarMovies] = useState([1, 2, 3]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {}, [item]);
   return (
@@ -51,20 +52,24 @@ export default MovieScreen = () => {
             <HeartIcon size={35} color={isFavourite ? "red" : "white"} />
           </TouchableOpacity>
         </SafeAreaView>
-        <View>
-          <Image
-            source={MoviePoster}
-            className=""
-            style={{ width, height: height * 0.55 }}
-          />
-          <LinearGradient
-            colors={["transparent", "rgba(23,23,23,0.8)", "rgba(23,23,23,1)"]}
-            style={{ width, height: height * 0.4 }}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            className="absolute bottom-0"
-          />
-        </View>
+        {loading ? (
+          <Loading />
+        ) : (
+          <View>
+            <Image
+              source={MoviePoster}
+              className=""
+              style={{ width, height: height * 0.55 }}
+            />
+            <LinearGradient
+              colors={["transparent", "rgba(23,23,23,0.8)", "rgba(23,23,23,1)"]}
+              style={{ width, height: height * 0.4 }}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
+              className="absolute bottom-0"
+            />
+          </View>
+        )}
       </View>
       <View
         style={{
@@ -102,7 +107,11 @@ export default MovieScreen = () => {
 
       <Cast cast={cast} navigation={navigation} />
 
-      <MoviesList title="Similar Movie" data={similarMovies} hideSeeAllButton={true}/>
+      <MoviesList
+        title="Similar Movie"
+        data={similarMovies}
+        hideSeeAllButton={true}
+      />
     </ScrollView>
   );
 };

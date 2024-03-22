@@ -7,13 +7,14 @@ import {
 } from "react-native";
 import React from "react";
 import MoviePosterImage from "../assets/images/moviePoster1.png";
+import { getImage500 } from "../api/moviedb";
 
 const { width, height } = Dimensions.get("window");
-export default MovieCard = ({ item,handlePress }) => {
+export default MovieCard = ({ item, handlePress }) => {
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <Image
-        source={MoviePosterImage}
+        source={{ uri: getImage500(item.poster_path) }}
         style={{
           width: width * 0.6,
           height: height * 0.4,
@@ -23,4 +24,3 @@ export default MovieCard = ({ item,handlePress }) => {
     </TouchableWithoutFeedback>
   );
 };
-

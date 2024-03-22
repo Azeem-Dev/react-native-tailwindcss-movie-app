@@ -14,7 +14,7 @@ import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { HeartIcon } from "react-native-heroicons/solid";
 import { styles } from "../theme";
 import PersonImage from "../assets/images/personImage.jpg";
-import { MoviesList } from "../components";
+import { Loading, MoviesList } from "../components";
 const { width, height } = Dimensions.get("window");
 const ios = Platform.OS === "ios";
 const verticalMargin = ios ? "" : "my-3";
@@ -23,6 +23,7 @@ export default PersonScreen = () => {
   const navigation = useNavigation();
   const [isFavourite, toggleFavourite] = useState(false);
   const [personMovies, setPersonMovies] = useState([1, 2, 3]);
+  const [loading, setLoading] = useState(true);
 
   return (
     <ScrollView

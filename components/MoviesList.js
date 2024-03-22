@@ -47,7 +47,7 @@ export default MoviesList = ({ title, data, hideSeeAllButton = false }) => {
                   className="rounded-3xl"
                   style={{ width: width * 0.33, height: height * 0.22 }}
                 />
-                <Text className="text-neutral-300 ml-2">{item}</Text>
+                <Text className="text-neutral-300 ml-2">Something</Text>
               </View>
             </TouchableWithoutFeedback>
           );
