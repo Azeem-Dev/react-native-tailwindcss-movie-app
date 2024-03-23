@@ -7,7 +7,6 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-import PersonImage from "../assets/images/personImage.jpg";
 import { fallBackPersonImage, getImage185 } from "../api/moviedb";
 
 export default Cast = ({ cast, navigation }) => {

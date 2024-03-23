@@ -6,7 +6,6 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-import MoviePosterImage from "../assets/images/moviePoster1.png";
 import { getImage500 } from "../api/moviedb";
 
 const { width, height } = Dimensions.get("window");

@@ -9,7 +9,6 @@ import {
   Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MoviePosterImage from "../assets/images/moviePoster2.jpg";
 
 import { styles } from "../theme";
 import { fallbackMoviePoster, getImage185 } from "../api/moviedb";

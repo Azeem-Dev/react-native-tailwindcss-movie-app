@@ -13,7 +13,6 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { HeartIcon } from "react-native-heroicons/solid";
 import { styles } from "../theme";
-import PersonImage from "../assets/images/personImage.jpg";
 import { Loading, MoviesList } from "../components";
 import {
   fallBackPersonImage,
@@ -82,81 +81,85 @@ export default PersonScreen = () => {
         </TouchableOpacity>
       </SafeAreaView>
 
-      <View>
-        <View
-          className="flex-row justify-center"
-          style={{
-            shadowColor: "gray",
-            shadowRadius: 40,
-            shadowOffset: { width: 0, height: 5 },
-            shadowOpacity: 1,
-            elevation: 4,
-          }}
-        >
-          <View className="items-center rounded-full overflow-hidden h-72 w-72 border-2 border-neutral-500">
-            <Image
-              source={{
-                uri: getImage342(person.profile_path) || fallBackPersonImage,
-              }}
-              style={{ height: height * 0.43, width: width * 0.74 }}
-            />
+      {loading ? (
+        <Loading />
+      ) : (
+        <View>
+          <View
+            className="flex-row justify-center"
+            style={{
+              shadowColor: "gray",
+              shadowRadius: 40,
+              shadowOffset: { width: 0, height: 5 },
+              shadowOpacity: 1,
+              elevation: 4,
+            }}
+          >
+            <View className="items-center rounded-full overflow-hidden h-72 w-72 border-2 border-neutral-500">
+              <Image
+                source={{
+                  uri: getImage342(person.profile_path) || fallBackPersonImage,
+                }}
+                style={{ height: height * 0.43, width: width * 0.74 }}
+              />
+            </View>
           </View>
-        </View>
 
-        <View className="mt-6">
-          <Text className="text-3xl text-white font-bold text-center">
-            {person.name}
-          </Text>
-          <Text className="text-base text-neutral-500  text-center">
-            {person.place_of_birth ?? "Unknown"}
-          </Text>
-        </View>
-
-        <View
-          className="mx-3 mt-6 flex-row justify-between items-center bg-neutral-700 rounded-full"
-          style={{
-            height: height * 0.07,
-          }}
-        >
-          <View className="border-r-2 border-r-neutral-400 px-4 items-center">
-            <Text className="text-white font-semibold">Gender</Text>
-            <Text className="text-neutral-300 text-sm">
-              {getGender(person.gender)}
+          <View className="mt-6">
+            <Text className="text-3xl text-white font-bold text-center">
+              {person.name}
+            </Text>
+            <Text className="text-base text-neutral-500  text-center">
+              {person.place_of_birth ?? "Unknown"}
             </Text>
           </View>
-          <View className="border-r-2 border-r-neutral-400 px-4  items-center">
-            <Text className="text-white font-semibold">Birthday</Text>
-            <Text className="text-neutral-300 text-sm">
-              {person.birthday ?? "UnKnown"}
-            </Text>
-          </View>
-          <View className="border-r-2 border-r-neutral-400 px-4 items-center">
-            <Text className="text-white font-semibold">Known for</Text>
-            <Text className="text-neutral-300 text-sm">
-              {person.known_for_department}
-            </Text>
-          </View>
-          <View className="px-4 items-center">
-            <Text className="text-white font-semibold">Popularity</Text>
-            <Text className="text-neutral-300 text-sm">
-              {person.popularity}
-            </Text>
-          </View>
-        </View>
 
-        <View className="my-6 mx-4 space-y-2">
-          <Text className="text-white text-lg">Biography</Text>
-          <Text className="text-neutral-400 tracking-wide">
-            {person?.biography ?? "No biography found..."}
-          </Text>
-        </View>
+          <View
+            className="mx-3 mt-6 flex-row justify-between items-center bg-neutral-700 rounded-full"
+            style={{
+              height: height * 0.07,
+            }}
+          >
+            <View className="border-r-2 border-r-neutral-400 px-4 items-center">
+              <Text className="text-white font-semibold">Gender</Text>
+              <Text className="text-neutral-300 text-sm">
+                {getGender(person.gender)}
+              </Text>
+            </View>
+            <View className="border-r-2 border-r-neutral-400 px-4  items-center">
+              <Text className="text-white font-semibold">Birthday</Text>
+              <Text className="text-neutral-300 text-sm">
+                {person.birthday ?? "UnKnown"}
+              </Text>
+            </View>
+            <View className="border-r-2 border-r-neutral-400 px-4 items-center">
+              <Text className="text-white font-semibold">Known for</Text>
+              <Text className="text-neutral-300 text-sm">
+                {person.known_for_department}
+              </Text>
+            </View>
+            <View className="px-4 items-center">
+              <Text className="text-white font-semibold">Popularity</Text>
+              <Text className="text-neutral-300 text-sm">
+                {person.popularity}
+              </Text>
+            </View>
+          </View>
 
-        <MoviesList
-          title="Movies"
-          data={personMovies}
-          hideSeeAllButton={true}
-        />
-      </View>
+          <View className="my-6 mx-4 space-y-2">
+            <Text className="text-white text-lg">Biography</Text>
+            <Text className="text-neutral-400 tracking-wide">
+              {person?.biography ?? "No biography found..."}
+            </Text>
+          </View>
+
+          <MoviesList
+            title="Movies"
+            data={personMovies}
+            hideSeeAllButton={true}
+          />
+        </View>
+      )}
     </ScrollView>
   );
 };

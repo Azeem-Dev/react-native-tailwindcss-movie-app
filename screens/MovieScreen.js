@@ -14,7 +14,6 @@ import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { HeartIcon } from "react-native-heroicons/solid";
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../theme/index";
-import MoviePoster from "../assets/images/moviePoster2.jpg";
 import { Cast, Loading, MoviesList } from "../components";
 import {
   fallbackMoviePoster,
