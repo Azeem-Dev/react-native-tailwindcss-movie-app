@@ -32,6 +32,7 @@ export default HomeScreen = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const multiApiCalls = async () => {
       const [res1, res2, res3] = await Promise.all([
         fetchTrendingMovies(),
@@ -46,6 +47,7 @@ export default HomeScreen = () => {
       }
       if (res3.results && res3.results?.length > 0) {
         setTopRated(res3.results);
+        setLoading(false);
       }
       // setUpcoming(res2.results);
       // setTopRated(res3);

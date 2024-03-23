@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import MoviePosterImage from "../assets/images/moviePoster2.jpg";
 
 import { styles } from "../theme";
+import { fallbackMoviePoster, getImage185 } from "../api/moviedb";
 
 export default MoviesList = ({ title, data, hideSeeAllButton = false }) => {
   const { width, height } = Dimensions.get("window");
@@ -39,15 +40,21 @@ export default MoviesList = ({ title, data, hideSeeAllButton = false }) => {
         renderItem={({ item }) => {
           return (
             <TouchableWithoutFeedback
-              onPress={() => navigation.push("Movie", item)}
+              onPress={() => navigation.push("Movie", item.id)}
             >
               <View className="space-y-1 mr-4">
                 <Image
-                  source={MoviePosterImage}
+                  source={{
+                    uri: getImage185(item.poster_path) || fallbackMoviePoster,
+                  }}
                   className="rounded-3xl"
                   style={{ width: width * 0.33, height: height * 0.22 }}
                 />
-                <Text className="text-neutral-300 ml-2">Something</Text>
+                <Text className="text-neutral-300 ml-2">
+                  {item.title?.length > 14
+                    ? item.title?.slice(0, 14) + "..."
+                    : item.title}
+                </Text>
               </View>
             </TouchableWithoutFeedback>
           );
@@ -57,4 +64,3 @@ export default MoviesList = ({ title, data, hideSeeAllButton = false }) => {
     </View>
   );
 };
-

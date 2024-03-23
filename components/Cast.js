@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import PersonImage from "../assets/images/personImage.jpg";
+import { fallBackPersonImage, getImage185 } from "../api/moviedb";
 
 export default Cast = ({ cast, navigation }) => {
   return (
@@ -18,8 +19,8 @@ export default Cast = ({ cast, navigation }) => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
         data={cast}
-        keyExtractor={(item,index) => {
-          return index;
+        keyExtractor={(item, index) => {
+          return item.id;
         }}
         renderItem={({ item: person }) => {
           return (
@@ -30,17 +31,23 @@ export default Cast = ({ cast, navigation }) => {
               }}
             >
               <View className="overflow-hidden rounded-full h-20 w-20 items-center border border-neutral-500">
-                <Image className="rounded-2xl h-24 w-20" source={PersonImage} />
+                <Image
+                  className="rounded-2xl h-24 w-20"
+                  source={{
+                    uri:
+                      getImage185(person.profile_path) || fallBackPersonImage,
+                  }}
+                />
               </View>
               <Text className="text-white text-xs mt-1">
-                {"Jhon Wick".length > 10
-                  ? "Jhon Wick".slice(0, 10) + "..."
-                  : "Jhon Wick"}
+                {person.character.length > 10
+                  ? person.character.slice(0, 10) + "..."
+                  : person.character}
               </Text>
               <Text className="text-neutral-400 text-xs mt-1">
-                {"Jhon Wick".length > 10
-                  ? "Jhon Wick".slice(0, 10) + "..."
-                  : "Jhon Wick"}
+                {person.name.length > 10
+                  ? person.name.slice(0, 10) + "..."
+                  : person.name}
               </Text>
             </TouchableOpacity>
           );

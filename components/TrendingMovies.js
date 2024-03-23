@@ -11,7 +11,7 @@ export default TrendingMovies = ({ movies }) => {
   const navigation = useNavigation();
 
   const hanldePress = (movie) => {
-    navigation.navigate("Movie", movie);
+    navigation.navigate("Movie", movie.id);
   };
   return (
     <View className="mb-8">
